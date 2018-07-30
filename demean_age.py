@@ -1,14 +1,9 @@
-import sys
 import numpy as np
-import pandas as pd
 
-age = pd.read_csv(sys.argv[1], sep="\t").age
+age = np.loadtxt("participants.tsv", skiprows=1, usecols=3)
 
 mean_age = sum(age)/len(age)
 
-assert mean_age < 100
-assert mean_age > 10
-
-np.savetxt("demeaned_" + sys.argv[1], age-mean_age)
+np.savetxt("demeaned_age.txt", age-mean_age)
 
 print("done!")
